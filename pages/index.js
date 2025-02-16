@@ -67,8 +67,8 @@ export default function Home() {
             layout="vertical"
             onFinish={handleSubmit}
             initialValues={{
-              minStep: 18000,
-              maxStep: 25000
+              minStep: 10000,
+              maxStep: 15000
             }}
             method="post"
             autoComplete="on"
