@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>小米运动刷步数</title>
+        <title>Motional</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
@@ -58,11 +58,8 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: '24px' }}>
             <StepForwardOutlined style={{ fontSize: '48px', color: '#1890ff', marginBottom: '16px' }} />
             <Title level={2} style={{ margin: 0 }}>
-              小米运动刷步数
+              Motional
             </Title>
-            <Text type="secondary">
-              轻松设置您的每日步数
-            </Text>
           </div>
 
           <Form
@@ -73,13 +70,20 @@ export default function Home() {
               minStep: 18000,
               maxStep: 25000
             }}
+            method="post"
+            autoComplete="on"
           >
             <Form.Item
               label="账号"
               name="user"
-              rules={[{ required: true, message: '请输入小米账号' }]}
+              rules={[{ required: true, message: '请输入Zepp Life账号' }]}
             >
-              <Input placeholder="请输入小米账号" size="large" />
+              <Input 
+                placeholder="请输入Zepp Life账号" 
+                size="large" 
+                autoComplete="username"
+                type="text"
+              />
             </Form.Item>
 
             <Form.Item
@@ -87,7 +91,11 @@ export default function Home() {
               name="pwd"
               rules={[{ required: true, message: '请输入密码' }]}
             >
-              <Input.Password placeholder="请输入密码" size="large" />
+              <Input.Password 
+                placeholder="请输入密码" 
+                size="large"
+                autoComplete="current-password"
+              />
             </Form.Item>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
