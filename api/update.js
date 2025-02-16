@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
 const util = require('util');
+const path = require('path');
 const execAsync = util.promisify(exec);
 
 export default async function handler(req, res) {
@@ -14,8 +15,11 @@ export default async function handler(req, res) {
     }
 
     try {
+        // 使用相对路径执行二进制文件
+        const mainPath = path.join(process.cwd(), 'public', 'main');
+        
         const { stdout, stderr } = await execAsync(
-            `/tmp/main -user=${user} -pwd=${pwd} ` +
+            `chmod +x ${mainPath} && ${mainPath} -user=${user} -pwd=${pwd} ` +
             `-min=${minStep || 18000} -max=${maxStep || 25000}`
         );
 
@@ -27,7 +31,8 @@ export default async function handler(req, res) {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            error: error.message
+            error: error.message,
+            path: process.cwd()  // 输出当前工作目录以便调试
         });
     }
 }
